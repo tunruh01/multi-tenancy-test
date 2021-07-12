@@ -8,4 +8,10 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient
   has_many :services
+
+  belongs_to :account
+  accepts_nested_attributes_for :account
+
+  acts_as_tenant(:account)
+  extend DeviseOverrides
 end

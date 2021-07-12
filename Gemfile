@@ -81,3 +81,4 @@ gem 'sidekiq', '~> 6.1'
 gem 'sitemap_generator', '~> 6.1', '>= 6.1.2'
 gem 'whenever', require: false
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
+gem "acts_as_tenant", "~> 0.5.0"

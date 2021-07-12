@@ -1,15 +1,16 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  set_current_tenant_through_filter
+  before_action :set_tenant
+  before_action :authenticate_user!
 
-  protect_from_forgery with: :exception
+  private
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :masquerade_user!
-
-  protected
-
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
-    end
+  def set_tenant
+    # if current_user
+      current_account = current_user&.account
+    # else
+    #   current_account = Account.find(3)
+    # end
+    set_current_tenant(current_account)
+  end
 end
